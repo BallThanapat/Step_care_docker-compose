@@ -116,7 +116,7 @@ const handleSubmit = async () => {
     console.error(error.message);
   } else {
     // Send the token and product price to the backend
-    const response = await fetch('http://localhost:8000/api/customers/charge/', {
+    const response = await fetch('http://backend:8000/api/customers/charge/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
