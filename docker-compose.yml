@@ -9,7 +9,7 @@ services:
     ports:
       - "3000:80"  # เปิด port 3000 สำหรับ Vue frontend
     environment:
-      - VITE_API_URL=http://localhost:8000  # ชี้ไปที่ backend API
+      - VITE_API_URL=http://backend:8000  # ชี้ไปที่ backend API
     networks:
       - app-network
     depends_on:
