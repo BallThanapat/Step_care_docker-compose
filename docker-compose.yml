@@ -9,7 +9,7 @@ services:
     ports:
       - "3000:80"
     environment:
-      - VITE_API_URL=http://backend:8000
+      - VITE_API_URL=http://34.87.91.112:8000
     networks:
       - app-network
     depends_on:
