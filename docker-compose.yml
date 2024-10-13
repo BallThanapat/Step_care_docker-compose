@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   frontend:
+    container_name: frontend
     build:
       context: ./Frontend
       dockerfile: Dockerfile
@@ -15,6 +16,7 @@ services:
       - backend  # ให้ frontend รอ backend ขึ้นก่อน
 
   backend:
+    container_name: backend
     build:
       context: ./Backend
       dockerfile: Dockerfile
@@ -33,6 +35,7 @@ services:
       - app-network
 
   db:
+    container_name: db
     image: postgres:13  # ใช้ PostgreSQL version 13
     environment:
       - POSTGRES_DB=stepcare_db
