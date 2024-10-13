@@ -103,9 +103,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'stepcare_db',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': 'bunnyz2710',
         'HOST': 'localhost',
-        'PORT': '5433',
+        'PORT': '5432',
     }
 }
 
