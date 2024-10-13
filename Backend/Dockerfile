@@ -11,6 +11,6 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY . /app/  # คัดลอกทุกไฟล์และโฟลเดอร์จาก Backend ไปยัง container
 
 # ระบุให้ทำงานจากตำแหน่งที่ไฟล์ manage.py อยู่
-WORKDIR /app
+WORKDIR /app/studforce
 
 CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
