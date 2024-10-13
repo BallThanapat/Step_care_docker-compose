@@ -20,7 +20,7 @@ export const useCartStore = defineStore('cart', {
                 }
                 console.log(`Attempting to fetch customer with username: ${username}`);
                 const user_id = localStorage.getItem('user_ID');
-                const response = await axios.get(`http://localhost:8000/api/customers/customer-cart/${user_id}/`); //ดึง cart ที่ตรงกับ customer.id
+                const response = await axios.get(`http://34.87.91.112:8000/api/customers/customer-cart/${user_id}/`); //ดึง cart ที่ตรงกับ customer.id
                 console.log("customer response: " , response.data)
                 this.items = response.data;
 
@@ -45,7 +45,7 @@ export const useCartStore = defineStore('cart', {
             } else {
                 //เพิ่มเข้าไปในตะกร้าใหม่
                 try {
-                    const response = await axios.post('http://localhost:8000/api/customers/customer-cart/', productData);
+                    const response = await axios.post('http://34.87.91.112:8000/api/customers/customer-cart/', productData);
                     this.items.push(response.data);
                     console.log('Product added to cart successfully:', response.data);
                 } catch (error) {
@@ -57,7 +57,7 @@ export const useCartStore = defineStore('cart', {
             if (this.items[index]) {
                 try {
                     const productId = this.items[index].id; // หากใน items มี id ของสินค้า
-                    await axios.put(`http://localhost:8000/api/customers/cart/${productId}/`, {
+                    await axios.put(`http://34.87.91.112:8000/api/customers/cart/${productId}/`, {
                         amount: amount,
                     });
                     this.items[index].amount = amount;
@@ -75,7 +75,7 @@ export const useCartStore = defineStore('cart', {
                     const productCartId = this.items[index].id;
                     console.log("item del :",this.items[index].id)
                     console.log("del :",productCartId)
-                    await axios.delete(`http://localhost:8000/api/customers/cart/${productCartId}/`);
+                    await axios.delete(`http://34.87.91.112:8000/api/customers/cart/${productCartId}/`);
                     this.items.splice(index, 1);
     
                 } catch (error) {
