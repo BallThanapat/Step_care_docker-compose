@@ -24,7 +24,7 @@ services:
       - POSTGRES_DB=stepcare_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=bunnyz2710
-      - DJANGO_SETTINGS_MODULE=Backend.settings
+      - DJANGO_SETTINGS_MODULE=studforce.settings
     volumes:
       - ./Backend:/app
     depends_on:
