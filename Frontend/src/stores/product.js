@@ -11,7 +11,7 @@ export const useProductStore = defineStore('product', {
         async fetchProduct() {
             try {
                 if (!this.loaded) {
-                    const response = await axios.get('http://localhost:8000/api/products/');
+                    const response = await axios.get('http://backend:8000/api/products/');
                     this.list = response.data;
                     this.loaded = true;
                 }
@@ -22,7 +22,7 @@ export const useProductStore = defineStore('product', {
         async fetchProductById(id) {
             try {
                 const token = localStorage.getItem('token');  // รับ token จาก localStorage
-                const response = await axios.get(`http://localhost:8000/api/products/${id}/`, {
+                const response = await axios.get(`http://backend:8000/api/products/${id}/`, {
                 });
                 this.currentProduct = response.data;
             } catch (error) {
@@ -32,7 +32,7 @@ export const useProductStore = defineStore('product', {
         async deleteProduct(id) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`http://localhost:8000/api/products/${id}/`, {
+                await axios.delete(`http://backend:8000/api/products/${id}/`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -45,7 +45,7 @@ export const useProductStore = defineStore('product', {
         async addProduct(newProduct) {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.post('http://localhost:8000/api/products/', newProduct, {
+                const response = await axios.post('http://backend:8000/api/products/', newProduct, {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
@@ -58,7 +58,7 @@ export const useProductStore = defineStore('product', {
         async editProduct(productId, updatedProduct) {
             try {
                 const token = localStorage.getItem('token');  // รับ token จาก localStorage
-                const response = await axios.put(`http://localhost:8000/api/products/${productId}/`, updatedProduct, {
+                const response = await axios.put(`http://backend:8000/api/products/${productId}/`, updatedProduct, {
                     headers: {
                         'Authorization': `Bearer ${token}`  // แนบ token ใน header
                     }
@@ -75,7 +75,7 @@ export const useProductStore = defineStore('product', {
         async applyDiscountCode(code, summaryPrice) {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.post('http://localhost:8000/api/products/promotions/', {
+                const response = await axios.post('http://backend:8000/api/products/promotions/', {
                     code: code,
                     summary_price: summaryPrice,
                 });
@@ -89,7 +89,7 @@ export const useProductStore = defineStore('product', {
         async addPromotion(newPromotion) {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.post('http://localhost:8000/api/products/promotions/create/', newPromotion);
+                const response = await axios.post('http://backend:8000/api/products/promotions/create/', newPromotion);
                 this.list.push(response.data);
             } catch (error) {
                 console.error('Error adding product', error);
