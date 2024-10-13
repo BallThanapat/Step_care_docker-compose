@@ -22,7 +22,7 @@ export const useCustomerStore = defineStore('customer', {
     actions: {
         async getCustomer() {
             try {
-                const response = await axios.get('http://localhost:8000/api/customers/');
+                const response = await axios.get('http://34.87.91.112:8000/api/customers/');
                 this.list = response.data;
                 return this.list;
             } catch (error) {
@@ -31,7 +31,7 @@ export const useCustomerStore = defineStore('customer', {
         },
         async addCustomer(customerData) {
             try {
-                const response = await axios.post('http://localhost:8000/api/customers/register/', customerData);
+                const response = await axios.post('http://34.87.91.112:8000/api/customers/register/', customerData);
                 this.list.push(response.data);
                 console.log('Customer added successfully:', response.data);
             } catch (error) {
@@ -40,7 +40,7 @@ export const useCustomerStore = defineStore('customer', {
         },
         async loginCustomer(customerData) {
             try {
-                const response = await axios.post('http://localhost:8000/api/auth/login/', {
+                const response = await axios.post('http://34.87.91.112:8000/api/auth/login/', {
                     username: customerData.username,
                     password: customerData.password,
                 }, {
@@ -63,7 +63,7 @@ export const useCustomerStore = defineStore('customer', {
         },
         async deleteAddress(addressId) {
             try {
-                const response = await axios.delete(`http://localhost:8000/api/customers/customer-addresses/${addressId}/`);
+                const response = await axios.delete(`http://34.87.91.112:8000/api/customers/customer-addresses/${addressId}/`);
                 this.list = this.list.filter(address => address.id !== addressId);
                 console.log("Deleted address with ID:", addressId);
             } catch (error) {
@@ -73,7 +73,7 @@ export const useCustomerStore = defineStore('customer', {
         },
         async getAddress(id) {
             try {
-                const response = await axios.get(`http://localhost:8000/api/customers/customer-addresses/${id}/`);
+                const response = await axios.get(`http://34.87.91.112:8000/api/customers/customer-addresses/${id}/`);
                 this.list = response.data;
                 return this.list;
             } catch (error) {
@@ -83,7 +83,7 @@ export const useCustomerStore = defineStore('customer', {
         },
         async createAddress(newAddress) {
             try {
-                const response = await axios.post('http://localhost:8000/api/customers/customer-addresses/', newAddress, {
+                const response = await axios.post('http://34.87.91.112:8000/api/customers/customer-addresses/', newAddress, {
                 });
                 this.list.push(response.data);
                 this.loaded = true;
@@ -93,7 +93,7 @@ export const useCustomerStore = defineStore('customer', {
         },
         async updateAddress(addressId, updatedAddress) {
             try {
-                const response = await axios.put(`http://localhost:8000/api/customers/customer-addresses/${addressId}/`, updatedAddress, {
+                const response = await axios.put(`http://34.87.91.112:8000/api/customers/customer-addresses/${addressId}/`, updatedAddress, {
                 });
 
                 const index = this.list.findIndex(address => address.id === addressId);
@@ -108,7 +108,7 @@ export const useCustomerStore = defineStore('customer', {
         },
         async createOrder(orderData) {
             try {
-                const response = await axios.post('http://localhost:8000/api/customers/orders/', 
+                const response = await axios.post('http://34.87.91.112:8000/api/customers/orders/', 
                     orderData,  // ส่งข้อมูลคำสั่งซื้อใน request body โดยตรง
                 );
         
@@ -128,7 +128,7 @@ export const useCustomerStore = defineStore('customer', {
                 return;
             }
             try {
-                const response = await axios.get(`http://localhost:8000/api/customers/orders/${customerID}/`, 
+                const response = await axios.get(`http://34.87.91.112:8000/api/customers/orders/${customerID}/`, 
                 );
                 
                 console.log('Order data retrieved successfully:', response.data);
@@ -146,7 +146,7 @@ export const useCustomerStore = defineStore('customer', {
                 return;
             }
             try {
-                const response = await axios.get(`http://localhost:8000/api/customers/orders/${customerID}/`, 
+                const response = await axios.get(`http://34.87.91.112:8000/api/customers/orders/${customerID}/`, 
                 );
                 
                 console.log('Order data retrieved successfully:', response.data);
@@ -158,7 +158,7 @@ export const useCustomerStore = defineStore('customer', {
         },
         async loadOrder() {
             try {
-                const response = await axios.get(`http://localhost:8000/api/customers/orders/`, 
+                const response = await axios.get(`http://34.87.91.112:8000/api/customers/orders/`, 
                 );
                 console.log('Order data retrieved successfully:', response.data);
                 this.orders = response.data;
@@ -170,7 +170,7 @@ export const useCustomerStore = defineStore('customer', {
         async updateStatus(statusChange) {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.put(`http://localhost:8000/api/customers/edit_orders/`, statusChange, {
+                const response = await axios.put(`http://34.87.91.112:8000/api/customers/edit_orders/`, statusChange, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json',
