@@ -43,6 +43,7 @@ services:
       - POSTGRES_PASSWORD=bunnyz2710
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./Backend/step_care.sql:/docker-entrypoint-initdb.d/step_care.sql
     networks:
       - app-network
 
