@@ -6,8 +6,6 @@ services:
     build:
       context: ./Frontend
       dockerfile: Dockerfile
-    volumes:
-      - Frontend:/app
     ports:
       - "3000:80"
     environment:
@@ -22,8 +20,6 @@ services:
     build:
       context: ./Backend
       dockerfile: Dockerfile
-    volumes:
-      - Backend:/app
     ports:
       - "8000:8000"
     environment:
