@@ -8,7 +8,9 @@ COPY requirements.txt /app/
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-COPY . /app/
+COPY . /app/  # คัดลอกทุกไฟล์และโฟลเดอร์จาก Backend ไปยัง container
 
-# รันการ migrate ฐานข้อมูลและ start Django server
+# ระบุให้ทำงานจากตำแหน่งที่ไฟล์ manage.py อยู่
+WORKDIR /app
+
 CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
