@@ -288,7 +288,7 @@ const handleSubmit = async () => {
             return;
         }
         const response = await fetch(
-            "http://localhost:8000/api/customers/charge/",
+            "http://34.87.91.112:8000/api/customers/charge/",
             {
                 method: "POST",
                 headers: {
@@ -343,7 +343,7 @@ const generatePromptPayQR = async () => {
     promptpaystate.value = true;
     try {
         const response = await fetch(
-            "http://localhost:8000/api/customers/generate-promptpay-qr/",
+            "http://34.87.91.112:8000/api/customers/generate-promptpay-qr/",
             {
                 method: "POST",
                 headers: {
