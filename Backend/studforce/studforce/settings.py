@@ -68,11 +68,7 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8080",
-    "http://localhost:5173",
-    "http://localhost:8000",
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = "studforce.urls"
 
