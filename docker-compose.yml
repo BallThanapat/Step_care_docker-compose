@@ -7,13 +7,13 @@ services:
       context: ./Frontend
       dockerfile: Dockerfile
     ports:
-      - "3000:80"  # เปิด port 3000 สำหรับ Vue frontend
+      - "3000:80"
     environment:
-      - VITE_API_URL=http://backend:8000  # ชี้ไปที่ backend API
+      - VITE_API_URL=http://backend:8000
     networks:
       - app-network
     depends_on:
-      - backend  # ให้ frontend รอ backend ขึ้นก่อน
+      - backend
 
   backend:
     container_name: backend
@@ -21,7 +21,7 @@ services:
       context: ./Backend
       dockerfile: Dockerfile
     ports:
-      - "8000:8000"  # เปิด port 8000 สำหรับ Django backend
+      - "8000:8000"
     environment:
       - POSTGRES_DB=stepcare_db
       - POSTGRES_USER=postgres
@@ -30,19 +30,19 @@ services:
     volumes:
       - ./Backend:/app
     depends_on:
-      - db  # ให้ backend รอฐานข้อมูล PostgreSQL ขึ้นก่อน
+      - db
     networks:
       - app-network
 
   db:
     container_name: db
-    image: postgres:13  # ใช้ PostgreSQL version 13
+    image: postgres:13
     environment:
       - POSTGRES_DB=stepcare_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=bunnyz2710
     volumes:
-      - postgres_data:/var/lib/postgresql/data  # เก็บข้อมูลของฐานข้อมูล
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
 
