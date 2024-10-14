@@ -35,7 +35,7 @@ pipeline {
                 // SSH ไปที่ GCP Instance และรัน docker-compose บนเครื่องนั้น
                 sshagent([SSH_KEY]) {
                     sh """
-                    ssh -o StrictHostKeyChecking=no ${SSH_USER}@${GCP_INSTANCE} << EOF
+                    ssh -o StrictHostKeyChecking=no $REMOTE_HOST << EOF
 		    ls -la
                     cd Step_care_docker-compose
                     docker-compose down
