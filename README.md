@@ -80,7 +80,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 ```
 <p>When you first access a new Jenkins instance, you are asked to unlock it using an automatically-generated password.
 
-Browse to http://localhost:8080 (or whichever port you configured for Jenkins when installing it) and wait until the Unlock Jenkins page appears.</p>
+Browse to http://<External_IP>:8080 (or whichever port you configured for Jenkins when installing it) and wait until the Unlock Jenkins page appears.</p>
 
 <div>
 <h3>--After you install Docker--</h3>
