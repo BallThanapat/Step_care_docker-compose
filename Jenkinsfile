@@ -10,13 +10,14 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
+                sh 'docker compose down'
                 sh 'docker compose up --build -d'
             }
         }
 
         stage('Deploy to Production') {
             steps {
-                echo 'Deploy complete!!!'
+                echo 'Deploy complete!!'
             }
         }
     }
@@ -24,7 +25,6 @@ pipeline {
     post {
         always {
             sh 'docker compose down'
-            
         }
     }
 }
