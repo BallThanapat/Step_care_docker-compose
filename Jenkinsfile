@@ -10,6 +10,7 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
+                sh 'docker compose down'
                 sh 'docker compose up --build -d --remove-orphans'
             }
         }
@@ -23,7 +24,7 @@ pipeline {
 
     post {
         always {
-            sh 'docker compose down'
+            sh 'docker compose down'  // ทำความสะอาด container หลังจาก pipeline จบ
         }
     }
 }
