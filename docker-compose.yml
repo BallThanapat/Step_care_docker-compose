@@ -34,18 +34,6 @@ services:
     networks:
       - app-network
 
-  db:
-    container_name: db
-    image: postgres:13
-    environment:
-      - POSTGRES_DB=stepcare_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=bunnyz2710
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - app-network
-
 volumes:
   postgres_data:
 
