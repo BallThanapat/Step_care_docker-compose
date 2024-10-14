@@ -36,11 +36,11 @@ pipeline {
                 sshagent([SSH_CREDENTIALS]) {
                     sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'ls -la'"
                     sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'cd Step_care_docker-compose'"
-                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker stop $(docker ps -a -q) 2>/dev/null || true"
-                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker rm $(docker ps -a -q) 2>/dev/null || true"
-                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker rmi $(docker images -q) 2>/dev/null || true"
-                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker volume rm $(docker volume ls -q) 2>/dev/null || true"
-                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker network prune -f 2>/dev/null || true"
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker stop $(docker ps -a -q) 2>/dev/null || true'"
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker rm $(docker ps -a -q) 2>/dev/null || true'"
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker rmi $(docker images -q) 2>/dev/null || true'"
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker volume rm $(docker volume ls -q) 2>/dev/null || true'"
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker network prune -f 2>/dev/null || true'"
                     sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker compose pull'"
                     sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker compose up -d --build'"
                 }
