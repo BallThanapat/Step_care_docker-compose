@@ -15,6 +15,7 @@ pipeline {
                 sh 'docker rm -f frontend || true'
                 sh 'docker compose down'
                 sh 'docker compose up --build -d --remove-orphans'
+                sh 'docker compose up -d'
             }
         }
 
