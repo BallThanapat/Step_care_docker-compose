@@ -29,8 +29,6 @@ services:
       - DJANGO_SETTINGS_MODULE=studforce.settings
     volumes:
       - ./Backend:/app
-    depends_on:
-      - db
     networks:
       - app-network
 
