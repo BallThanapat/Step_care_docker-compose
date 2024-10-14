@@ -53,6 +53,34 @@ sudo apt-get install -y docker-compose-plugin
 ```
 
 </div>
+<h1>Now you shold install jenkins</h1>
+
+```
+sudo apt-get update
+sudo apt update
+sudo apt install -y fontconfig openjdk-17-jre
+java -version
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+sudo usermod -a -G docker jenkins
+sudo usermod -a -G docker $USER
+```
+
+<h1>Admin password Jenkins</h1>
+
+```
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+```
+<p>When you first access a new Jenkins instance, you are asked to unlock it using an automatically-generated password.
+
+Browse to http://localhost:8080 (or whichever port you configured for Jenkins when installing it) and wait until the Unlock Jenkins page appears.</p>
 
 <div>
 <h3>--After you install Docker--</h3>
