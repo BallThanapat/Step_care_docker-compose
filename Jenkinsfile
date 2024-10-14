@@ -24,7 +24,7 @@ pipeline {
 
     post {
         always {
-            sh 'docker compose down'  // ทำความสะอาด container หลังจาก pipeline จบ
+            sh 'docker compose down'
         }
     }
 }
