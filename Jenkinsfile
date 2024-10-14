@@ -17,7 +17,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                sh 'docker-compose exec backend python manage.py test'
+                sh 'docker compose exec backend python manage.py test'
             }
         }
 
@@ -30,7 +30,7 @@ pipeline {
 
     post {
         always {
-            sh 'docker-compose down'
+            sh 'docker compose down'
         }
     }
 }
