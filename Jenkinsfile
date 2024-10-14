@@ -23,13 +23,14 @@ pipeline {
 
         stage('Deploy to Production') {
             steps {
-                echo 'Deploy complete!'
+                echo 'Deploy complete!!'
             }
         }
     }
 
     post {
         always {
+            
             sh 'docker compose down'
             
         }
