@@ -10,10 +10,16 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker rm -f backend || true'
-                sh 'docker rm -f frontend || true'
-                sh 'docker compose down'
-                sh 'docker compose up --build -d --remove-orphans'
+                // สร้าง container ใหม่โดยไม่ปิด container เดิม (เพิ่ม scale เพื่อรัน instance ใหม่)
+                sh 'docker compose up --build -d --remove-orphans --scale backend=2 --scale frontend=2'
+            }
+        }
+
+        stage('Cleanup Old Containers') {
+            steps {
+                // ปิด instance เก่าหลังจากตรวจสอบแล้ว
+                sh 'docker rm -f $(docker ps -q -f name=backend | tail -n 1) || true'
+                sh 'docker rm -f $(docker ps -q -f name=frontend | tail -n 1) || true'
             }
         }
 
@@ -25,8 +31,8 @@ pipeline {
     }
 
     post {
-        always {
-            sh 'docker compose up -d'
+        success {
+            echo 'Deployment successful, rolling update completed'
         }
     }
 }
