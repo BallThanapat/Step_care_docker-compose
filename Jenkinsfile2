@@ -3,8 +3,8 @@ pipeline {
 
     environment {
         GCP_INSTANCE = '35.240.251.53'     // IP ของ Google Cloud Instance ที่จะ deploy
-        SSH_USER = 'nutzamu'            // ชื่อผู้ใช้ที่ใช้ SSH
-	REMOTE_HOST = 'nutzamu@35.240.251.53'
+        SSH_USER = 'nut59607'            // ชื่อผู้ใช้ที่ใช้ SSH
+	REMOTE_HOST = 'nut59607@35.240.251.53'
         SSH_CREDENTIALS = 'ssh_instance'  // ใช้ Jenkins credentials สำหรับ SSH key
     }
 
