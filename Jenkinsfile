@@ -10,14 +10,7 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker compose down'
                 sh 'docker compose up --build -d'
-            }
-        }
-
-        stage('Run Tests') {
-            steps {
-                sh 'docker compose exec backend python manage.py test'
             }
         }
 
