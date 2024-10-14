@@ -10,7 +10,6 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                // บังคับลบ container backend และ frontend ที่มีอยู่แล้ว
                 sh 'docker rm -f backend || true'
                 sh 'docker rm -f frontend || true'
                 sh 'docker compose down'
