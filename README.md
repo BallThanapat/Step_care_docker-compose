@@ -2,6 +2,7 @@
 
 <div>
 <h3>--In Google Cloud Instance--</h3>
+  
 ``` bash
 mkdir Project
 cd Project
@@ -50,12 +51,13 @@ sudo chmod 666 /var/run/docker.sock
 # Install the Compose plugin
 sudo apt-get install -y docker-compose-plugin
 ```
+
 </div>
 
 <div>
-  <p>
 <h3>--After you install Docker--</h3>
 
+``` bash
 git clone https://github.com/BallThanapat/Step_care_docker-compose.git
 cd Step_care_docker-compose
 docker compose up -d
@@ -63,5 +65,6 @@ docker compose up -d
 <!--ก็อปไฟล์ sql ลง instance-->
 docker cp ./Backend/step_care.sql db:/step_care.sql
 docker-compose exec db psql -U postgres -d stepcare_db -f /step_care.sql
-</p>
+```
+
 </div>
