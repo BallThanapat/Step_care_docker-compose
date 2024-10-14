@@ -65,6 +65,10 @@ docker compose up -d
 #--ก็อปไฟล์ sql ลง instance--
 docker cp ./Backend/step_care.sql db:/step_care.sql
 docker-compose exec db psql -U postgres -d stepcare_db -f /step_care.sql
+
+#create superuser
+sudo docker exec -it step_care_docker-compose-backend-1 /bin/bash
+python manage.py createsuperuser
 ```
 
 </div>
