@@ -5,7 +5,7 @@ pipeline {
         GCP_INSTANCE = '35.240.251.53'     // IP ของ Google Cloud Instance ที่จะ deploy
         SSH_USER = 'nutzamu'            // ชื่อผู้ใช้ที่ใช้ SSH
 	REMOTE_HOST = 'nutzamu@35.240.251.53'
-        SSH_KEY = 'ssh_instance'  // ใช้ Jenkins credentials สำหรับ SSH key
+        SSH_CREDENTIALS = 'ssh_instance'  // ใช้ Jenkins credentials สำหรับ SSH key
     }
 
     stages {
@@ -33,16 +33,12 @@ pipeline {
         stage('Deploy to GCP Instance') {
             steps {
                 // SSH ไปที่ GCP Instance และรัน docker-compose บนเครื่องนั้น
-                sshagent([SSH_KEY]) {
-                    sh """
-                    ssh -o StrictHostKeyChecking=no $REMOTE_HOST << EOF
-		    ls -la
-                    cd Step_care_docker-compose
-                    docker-compose down
-                    docker-compose pull
-                    docker-compose up -d --build
-                    EOF
-                    """
+                sshagent([SSH_CREDENTIALS]) {
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'ls -la'"
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'cd Step_care_docker-compose'"
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker-compose down'"
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker-compose pull'"
+                    sh "ssh -o StrictHostKeyChecking=no $REMOTE_HOST 'docker-compose up -d --build'"
                 }
             }
         }
