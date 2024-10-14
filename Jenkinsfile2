@@ -1,0 +1,55 @@
+pipeline {
+    agent any
+
+    environment {
+        GCP_INSTANCE = '35.240.251.53'     // IP ของ Google Cloud Instance ที่จะ deploy
+        SSH_USER = 'nutzamu'            // ชื่อผู้ใช้ที่ใช้ SSH
+        SSH_KEY = credentials('ssh_instance')  // ใช้ Jenkins credentials สำหรับ SSH key
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                // ดึงโค้ดจาก GitHub repository
+                git branch: 'main', url: 'https://github.com/BallThanapat/Step_care_docker-compose.git'
+            }
+        }
+
+        stage('Build and Push Docker Images') {
+            steps {
+                // สร้าง Docker images สำหรับ frontend และ backend
+                script {
+                    dir('Frontend') {
+                        sh 'docker build -t frontend-image .'
+                    }
+                    dir('Backend') {
+                        sh 'docker build -t backend-image .'
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to GCP Instance') {
+            steps {
+                // SSH ไปที่ GCP Instance และรัน docker-compose บนเครื่องนั้น
+                sshagent(['ssh_instance']) {
+                    sh """
+                    ssh -o StrictHostKeyChecking=no ${SSH_USER}@${GCP_INSTANCE} << EOF
+                    cd /path/to/your/project/on/instance
+                    docker-compose down
+                    docker-compose pull
+                    docker-compose up -d --build
+                    EOF
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Cleanup Docker images บน Jenkins
+            sh 'docker image prune -f'
+        }
+    }
+}
