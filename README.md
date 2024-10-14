@@ -2,7 +2,7 @@
 
 <div>
 <h3>--In Google Cloud Instance--</h3>
-<p>
+``` bash
 mkdir Project
 cd Project
 #!/bin/bash
@@ -49,7 +49,7 @@ sudo chmod 666 /var/run/docker.sock
 
 # Install the Compose plugin
 sudo apt-get install -y docker-compose-plugin
-</p>
+```
 </div>
 
 <div>
