@@ -101,7 +101,7 @@ DATABASES = {
         'NAME': 'stepcare_db',
         'USER': 'postgres',
         'PASSWORD': 'bunnyz2710',
-        'HOST': 'db',
+        'HOST': '35.247.169.225',
         'PORT': '5432',
     }
 }
