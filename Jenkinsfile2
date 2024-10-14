@@ -35,7 +35,7 @@ pipeline {
                 sshagent(['ssh_instance']) {
                     sh """
                     ssh -o StrictHostKeyChecking=no ${SSH_USER}@${GCP_INSTANCE} << EOF
-                    cd /path/to/your/project/on/instance
+                    cd Step_care_docker-compose
                     docker-compose down
                     docker-compose pull
                     docker-compose up -d --build
