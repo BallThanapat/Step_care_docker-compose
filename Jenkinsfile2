@@ -36,6 +36,7 @@ pipeline {
                 sshagent([SSH_KEY]) {
                     sh """
                     ssh -o StrictHostKeyChecking=no ${SSH_USER}@${GCP_INSTANCE} << EOF
+		    ls -la
                     cd Step_care_docker-compose
                     docker-compose down
                     docker-compose pull
